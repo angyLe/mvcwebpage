@@ -1,0 +1,727 @@
+﻿/*				 STYLE.CSS custom style 					*/
+
+@import "reset";
+@import "grid1";
+
+/* VARIABLES*/
+
+$imgPath: img;
+$greenColor: #87b672;
+$textColor: #9b9999;
+$textColorBold: #666262;
+$whiteColor: white;
+$colorForLin: #e3e3e3;
+
+
+$comonMargintop: 46px;
+
+/*END VAR*/
+
+/* MIXINS -code that reapeat*/
+
+@mixin box-sizing ($value){
+	-webkit-box-sizing: $value;
+	-moz-box-sizing: $value;
+	box-sizing: $value;
+}	
+@mixin box-shadow ($shadowPosition: null, $x: null, $y: null, $gausRadius: null, $strech: null, $color: null) {
+	-webkit-box-shadow: $shadowPosition $x $y $gausRadius $strech $color;
+	-moz-box-shadow: $shadowPosition $x $y $gausRadius $strech $color;
+	box-shadow: $shadowPosition $x $y $gausRadius $strech $color;
+}
+@mixin grayfilter () {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: url(grayscale.svg); /* Firefox 4+ */
+  filter: gray; /* IE 6-9 */
+}
+/* END of mixins*/
+
+/* 					ALL FIX 						*/
+
+/* fix for yellow bg in intputs in webkit */
+input:-webkit-autofill {
+    color: #2a2a2a ;
+}
+
+/* clearfix */
+.clear-fix:before, .clear-fix:after {
+	content: " ";
+	display: table;
+}
+.clear-fix:after {
+	clear: both;
+}
+/* Костыли для (Internet Explorer 6 и 7) */
+.clear-fix {
+	*zoom: 1;
+}
+					/* END FIX */
+					/* COMMON STYLES */				
+					
+* {
+	@include box-sizing (border-box);
+}
+
+*:before,
+*:after {
+	@include box-sizing (border-box);
+}					
+
+html , body{
+	font: 16px/1.5 Lato, Georgia, sans-serif;
+	background-color: white;
+	position: relative;
+}
+body input:focus:required,
+body textarea:focus:required:invalid {
+	border:red 1px solid
+}
+body input:required:valid,
+body textarea:required:valid {
+	color:green;
+}
+body input:invalid {
+	color:red;
+}
+input {
+    border: none;
+    border: 1px solid black;
+}
+input, textarea {
+	outline:none;
+}
+input:active, textarea:active {
+	outline:none;
+}
+:focus {
+	outline:none;
+}
+textarea {
+	resize:none;
+}
+textarea {
+	resize:vertical;
+}
+textarea {
+	resize:horizontal;
+}
+
+a {
+	text-decoration: none;
+	color: #98B0D2;
+	&:hover, &:focus {
+		text-decoration: none;
+	}
+}
+
+li {
+	list-style :none;
+}
+
+*::-webkit-input-placeholder, *:-moz-placeholder, *::-moz-placeholder, 
+ *:-ms-input-placeholder  {
+	color: rgb(194, 205, 220);
+	opacity: 1;
+	font-size: 12px;
+	font-size: 0.75rem; 
+}
+/* if you have modernizer */
+math {
+	display: none;
+}
+h3 {
+    text-transform: uppercase;
+    font-size: 17px;
+    color: #666262;
+    font-weight: bold;
+    text-align: center;
+}
+h4 {
+    font-size: 14px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: white;
+}
+.CommonButton {
+    padding: 5px 11px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.greenButton {
+    @extend .CommonButton;
+    border: 1px solid $greenColor;
+    background-color: $greenColor;
+    color: $whiteColor;
+}
+.whiteButton {
+    @extend .CommonButton;
+    border: 1px solid white;
+    background-color: transparent;
+    margin-top: 20px;
+    color: white;
+}
+.validation-summary-errors {
+    color: red;
+    font-size: 12px;
+}
+.input-validation-error {
+    
+    background-color: red;
+}
+.star {
+    color: red;
+}
+.active {
+    color: $greenColor !important;;
+}
+#loader {
+    display:none;
+}
+.column {
+    -webkit-column-width: 48%;
+    -moz-column-width: 48%;
+    column-width: 48%;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 4%;
+    -moz-column-gap: 4%;
+    column-gap: 4%;
+   }
+
+/* 					END COMMON STYLES 					*/
+
+/* LOADER*/
+.loader {
+  background: none repeat scroll 0 0 #ffffff;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 9999; 
+  
+  .loader_inner {
+    background-image: url($imgPath + '/preloader.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #fff;
+    height: 60px;
+    width: 60px;
+    margin-top: -30px;
+    margin-left: -30px;
+    left: 50%;
+    top: 50%;
+    position: absolute; 
+	}
+}
+/* END LOADER*/
+
+/*HEADER*/
+header 
+{
+    background: url('img/headerBegraund.jpg') no-repeat #aaa;
+	background-size: cover;
+    height: 488px;
+    
+    .header-top {
+        height: 93px;
+        line-height: 93px;
+        border-bottom: 1px solid white;
+        
+
+        .logo {
+            color: white;
+        }
+        .socialnet-icons {
+           display:inline-block;
+           margin: 0px;
+           float:right;
+
+            li {
+                display: inline-block;
+            }
+            
+        }
+    }
+
+    .header-top-white {
+        border-bottom: 1px solid $colorForLin;
+    }
+    
+    .mainmenu {
+
+        ul {
+            color: $whiteColor;
+            padding: 0px;
+
+            li {
+                display:inline-block;
+                font-size: 14px;
+                margin-right: 30px;
+                a {
+                    text-transform: uppercase;
+                    color: $whiteColor;
+                
+            }
+        }
+    }
+
+}
+
+    .mainmenuWhite {
+        @extend .mainmenu;
+        ul {
+            li {
+                a {
+                    color: $textColorBold;
+
+                }
+                a:focus {
+                    color: $greenColor;
+                }
+            }
+
+        }
+       
+    }
+    
+    .lozung {
+        color: $whiteColor;
+        text-align:center;
+        margin-top: 110px;
+
+        .mainLozung {
+            text-transform: uppercase;
+            font-size: 29px;
+            .colorGreen {
+                color: $greenColor;
+            }
+
+        }
+        .checkPortfolio {
+            color: $whiteColor;
+            margin-top: 26px;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+       
+    }
+
+    .bgOtherPages {
+        background: url('img/bgl.jpg') no-repeat #aaa;
+        height: 100px;
+        width: 100%;
+        color: white;
+        font-size: 36px;
+        vertical-align:middle;
+        line-height: 100px;
+    }
+
+}
+
+header:hover {
+   
+}
+
+.headerWhite {
+    background: none;
+    height: auto;
+}
+
+/*END HEADER*/
+
+/* BODY*/
+.body-content {
+    .aboutCompany {
+        text-align:center;
+        border-bottom: 1px solid $colorForLin;
+        padding-bottom: 48px;
+     &:before {
+         clear:both;
+     }  
+
+
+        h3 {
+            margin-top: $comonMargintop;
+
+        }
+       
+        p {
+            font-size: 16px;
+            color: $textColor;
+            line-height: 26px;
+        }
+    }
+
+    .utp {
+        margin-bottom: 83px;
+
+        .oneUtp:nth-child(2){
+            padding-left: 16px;
+            padding-right:16px;
+        }
+
+        .oneUtp {
+            height: 100%;
+            text-align:center;
+            margin-top: 59px;
+            padding-left: 0px;
+            padding-right: 0px;
+
+
+            .uptImg {
+                height: 70px;
+            }
+
+            h3 {
+                color: $textColorBold;
+            }
+            > div {
+                color: $textColor;
+                line-height: 26px;
+            }
+
+        }
+
+        
+    }
+    
+    .latestWorkcontainer {
+        background-color: #efefef;
+
+        .latestWork {
+
+            height: 333px;
+
+           h3 {
+                margin-top: $comonMargintop;
+            }
+
+            .onelatestWork {
+                height: 160px;
+                max-width: 100%;
+                display: block;
+                margin-right: -1px;
+            }
+        }
+    }
+
+    .categoryFilter {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        
+       button{
+        font-size: 14px;
+        color: $textColorBold;
+        text-transform: uppercase;
+        margin-right: 5px;
+        border: none;
+        background-color: transparent;
+        padding-right: 17px; 
+        }
+            
+        button:after {
+            content: '  /';
+        }
+    }
+    
+
+    .allProgects {
+
+         #Container1 {
+            padding: 0px;
+         }
+             
+        #Container1 .mix {
+            display: none;
+            padding: 0px;
+            position: relative;
+            float:left;
+            width: 20%;
+
+            &:hover {
+
+            }
+
+            &:hover > h3{
+                display: block;
+                font-size: 14px;
+                position: absolute;
+                left: 20px;
+                right: 0px;
+                top: 30px;
+                color: white;
+            }
+            
+            h3 {
+                height: 30px;
+                overflow: hidden;
+                margin: 0px;
+                text-align: left;
+                display: none;
+            }
+            .projectDescript {
+                height: auto;
+                overflow: hidden;
+                padding-bottom: 24px;
+                color: #FFFFFF;
+                display: none;
+                
+                &:hover {
+                  
+                }
+            }
+            
+            .imageOfProgect {
+                height: 202px;
+                overflow:hidden;
+               
+            }
+        }
+         
+    }
+
+    .contactsContainer {
+        $paddingComonforContacts: 60px;
+        padding-top: $paddingComonforContacts;
+        padding-bottom: $paddingComonforContacts;
+        border-bottom: 1px solid $colorForLin;
+
+         h3 {
+                text-align: left;
+         }
+        .contactForm {
+
+           .contactFormFilds {
+               margin-top: 10px;
+           }
+
+
+            form 
+            {
+                $commonColorForInputs: $colorForLin;
+                #Email, #Subject, #Name
+                {
+                    height: 40px;
+                    width: 350px;
+                    background-color: $commonColorForInputs;
+                    border: none;
+                }
+                #Message {
+                    height: 300px;
+                    width: 655px;
+                    background-color: $commonColorForInputs;
+                    border:none;
+                    vertical-align: top;
+                }
+                input[type="submit"] {
+                    margin-top: 30px;
+                }
+                input[data-val="true"], textarea [data-val="true"] ~ label{
+                   color: blue;
+                }
+
+            }
+
+        }
+    }
+
+    .newsCl {
+        padding-top: 50px;
+        margin-bottom: 70px;
+
+        
+        
+        .rowAppend {
+            
+            .oneNews {
+                margin-top: 10px;
+                padding-left: 0;
+                padding-right: 0;
+                padding-bottom: 10px;
+                min-height: 1px;
+                vertical-align:top;
+                color: $textColor;
+
+                .lesMer {
+                }
+                .newsText {
+                    margin-bottom: 10px;
+                    color: $textColorBold;
+                }
+                .newsTitle {
+                    color: $textColorBold;
+                }
+
+                picture {
+                    width: 100%;
+                    max-height: 300px;
+                    overflow: hidden;
+                    display: block;
+
+                    img {
+                        width: 100%;
+                        
+                    }
+                }
+            }
+        }
+
+    
+        
+     }
+
+    .OneNewsPerPage {
+        margin-top: 38px;
+        color: $textColor;
+        border-bottom: 1px solid $colorForLin;
+        padding-bottom: 48px;
+
+        picture {
+            
+            width: 80%;
+            margin: 0 10%;
+            display: block;
+
+            img {
+                width: 100%;
+            }
+        }
+        h1, h4 {
+            color: $textColorBold;
+            text-align: center;
+            font-size:20px;
+        }
+        h4 {
+            font-size: 14px;
+        }
+        .mainText {
+      
+            width: 80%;
+            margin: 10px 10%;
+            display: block;
+        }
+    }
+
+    .registerForm {
+
+        h4 {
+            color: $textColorBold;
+        }
+        .formRegister {
+            margin: 100px 100px;
+            
+            .greenButton {
+                margin-top: 10px;
+                
+            }
+        }
+    }
+
+    .loginForm {
+
+        .greenButton {
+            margin-top: 10px;
+        }
+
+        a {
+            color: $greenColor;
+        }
+    }
+
+}
+
+.MainFooter {
+
+   background-color: #333333;
+   color: $textColor;
+
+   .container {
+       padding-top: $comonMargintop;
+       pading-bottom: $comonMargintop;
+
+       .row {
+
+           div {
+               padding: 0px;
+           }
+       }
+   }
+
+   .logo2 {
+       color: white;
+   }
+   
+   .footermenu {
+       ul {
+           padding: 0px;
+           
+           li {
+               list-style: url(img/bullet.png);
+           }
+           
+       }
+   }
+
+   .newsbrev {
+       padding: 0px;
+
+       form {
+           
+           height: 34px;
+           input {
+               background-color: #4e4c4c;
+               border: none;
+               height: 100%;
+               width: 131px;
+               padding-left: 10px;
+           }
+           a {
+                background-color: #828282;
+                border: none;
+                color: white;
+                height: 100%;
+                display: inline-block;
+                padding: 10px 10px;
+                font-size: 12px;
+           }
+       }
+   }
+}
+
+
+
+/* Admin part*/
+.body-content-admin {
+
+    .NewsEditor {
+        
+        .imagecolumn {
+            padding: 0 px;
+        }
+
+        form {
+        picture {
+            width: 100%;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    }
+    
+
+}
+
+
+/*END BODY*/

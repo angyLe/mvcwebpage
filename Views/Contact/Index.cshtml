@@ -1,0 +1,77 @@
+﻿@model WebApplication1.Models.ContactInfo
+@{
+    ViewBag.Title = "Kontact oss";
+    Layout = "~/Views/Shared/_LayoutAllPages.cshtml";
+    ViewBag.CurrentPage = "Contact";
+
+
+}
+@section aboutCompanyTop {
+
+    @Html.Partial("AboutCompanyTop")
+}
+<div class="contactsContainer container">
+    <div class="row">
+        <div class="contactForm col col-float col-md-10 col-sm-12 col-xs-12 col-lg-10">
+            <h3>Kontakt oss</h3>
+            <p>Send oss en melding, så kommer vi tilbake til deg så fort som mulig</p>
+           
+            @using (Html.BeginForm("Index", "Contact", FormMethod.Post))
+            {
+                @Html.ValidationSummary()
+                foreach (var property in ViewData.ModelMetadata.Properties)
+                {
+                                       
+                    <div class="contactFormFilds">
+                        <label>
+                            @(property.DisplayName ?? property.PropertyName)
+                            @if (property.IsRequired)
+                            {
+                               <span class="star">*</span>
+                            }
+                        </label><br>
+                       
+                        @if (property.PropertyName == "Message")
+                        { 
+                            @Html.TextArea(property.PropertyName);
+                            
+                        }
+                        else
+                        {
+                            @Html.TextBox(property.PropertyName, null)
+                        }
+                    </div>
+
+                }
+                <input class="greenButton" type="submit" value="Send en melding">
+            }
+        </div>
+        <div class="col col-float col-md-5 col-lg-5 col-sm-12 col-xs-12">
+            <h3>Besøksadresse</h3>
+            <p>Nygata 9, 4006 STAVANGER </p>
+            <h3>Kontakt info</h3>
+            <p>
+                angelikalevluh@gmail.com<br>
+                +47 951 81 449<br>
+                +47 951 76 445<br>
+            </p>
+            <h3>Åpningstider</h3>
+            <table>
+                <tr>
+                    <td>Mandag–fredag</td>
+                    <td> 10–23</td>
+                </tr>
+                <tr><td>Lørdag	</td><td> 09–21</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section AboutCompanyBottom {
+    @Html.Partial("AboutCompanyPartialView")
+}
+
+@section Footer {
+    @Html.Partial("FooterPartialView")
+ }
+

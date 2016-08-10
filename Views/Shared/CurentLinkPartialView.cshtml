@@ -1,0 +1,9 @@
+﻿
+@if (!string.IsNullOrEmpty(ViewBag.CurrentPage))
+{
+    <script type="text/javascript">
+        $(function () {
+            $("a[title=@ViewBag.CurrentPage]").addClass("active");
+        });
+    </script>
+}

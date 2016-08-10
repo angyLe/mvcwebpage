@@ -1,0 +1,28 @@
+﻿@using WebApplication1.Models
+@using System.Text
+
+
+
+    @foreach (imageLink image in ViewBag.images)
+    {    
+       
+        string Title = ViewBag.Title;
+
+        StringBuilder str = new StringBuilder();
+        str.Append((string) ViewBag.Title);
+        str.Append("Class");
+        //string Classe = ViewBag.Title + 'ImageNews';
+        string link = image.Link;
+        string url = Url.Content("~/Content/img/news/" + link);
+
+        
+        <div class="ImageGallery">
+            <picture alt="@Title" class="@str">
+                <source src="@url" media="min-width:1170px">
+                <source src="@url" media="min-width:480px">
+                <source src="@url">
+                <!-- для браузеров не поддерживающих тег -->
+                <img src="@url">
+            </picture>
+        </div>
+    }
