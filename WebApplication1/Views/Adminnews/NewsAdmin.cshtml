@@ -1,0 +1,54 @@
+﻿@model WebApplication1.Models.News
+@using WebApplication1.Models
+
+@{
+    ViewBag.Title = "NewsAdmin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>NewsAdmin</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>News..</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.NewsId)
+       
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col col-float col-md-3 col-lg-3">
+                    @{
+                        ImageLink image = Model.ImageLink;
+                        string Title = Model.Title;
+                        string src = image != null ? image.Link : null;
+                    }
+                    @if (src != null)
+                    {
+                        string url = Url.Content("~/Content/img/news/" + @src);
+                        <picture alt="Title" class="picterForNewsEditor">
+                            <source src="@url" media="min-width:1170px">
+                            <source src="@url" media="min-width:480px">
+                            <source src="@url">
+                            <!-- для браузеров не поддерживающих тег -->
+                            <img src="@url">
+                        </picture>
+                    }
+                </div>
+                <div class="col col-float col-md-4 col-lg-4">
+                    @Html.EditorFor(modelItem => modelItem.Title)
+                </div>
+                <div class="col col-float col-md-4 col-lg-4">
+                    @Html.EditorFor(modelItem => modelItem.Text)
+                </div>
+                <div class="col col-float col-md-4 col-lg-4">
+                    @Html.EditorFor(modelItem => modelItem.Annonce)
+                </div>
+                @Html.HiddenFor(model => model.ImageLinkId)
+            </div>
+        </div>
+    </div>
+                        }

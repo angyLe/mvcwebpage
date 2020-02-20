@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Passord bekreftelse";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div>
+    <p>
+        Epost bekreftet! @Html.ActionLink("Klikk her for å gå inn.", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </p>
+</div>
